@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = 'PaymeMobile'
-  s.version      = '0.0.1'
+  s.version      = '0.0.2'
   s.summary      = 'Una breve descripción de PaymeMobile.'
   s.homepage     = 'https://www.alignet.com/'
   s.license      = 'MIT'
