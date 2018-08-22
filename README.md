@@ -62,4 +62,6 @@ Entonces, correr la siguiente instrucción:
 $ pod install
 ```
 
-### Ejemplo
+### Integración
+
+En construcción ...
