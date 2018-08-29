@@ -1,8 +1,8 @@
 # Payme Mobile
 
 [![CocoaPods](https://img.shields.io/badge/cocoapods-1.0.0-red.svg)](http://cocoapods.org/?q=author%3Astripe%20name%3Astripe)
-[![CocoaPods](https://img.shields.io/cocoapods/l/Stripe.svg?style=flat)](https://github.com/stripe/stripe-ios/blob/master/LICENSE)
-[![CocoaPods](https://img.shields.io/cocoapods/p/Stripe.svg?style=flat)](https://github.com/stripe/stripe-ios#)
+[![CocoaPods](https://img.shields.io/badge/licence-MIT-yellow.svg)](https://github.com/stripe/stripe-ios/blob/master/LICENSE)
+[![CocoaPods](https://img.shields.io/badge/plattform-ios-green.svg)](https://github.com/stripe/stripe-ios#)
 
 El SDK iOS de Payme Mobile crea una estupenda experiencia de pago en tu aplicación iOS asi como una implementación rápida y sencilla. Proporcionamos pantallas y elementos de interfaz de usuario vanguardistas que se pueden utilizar de forma simple para registrar los datos asociados a pagos y/o consumos realizados en los comercios. Consulte nuestra [Guía de integración de iOS](https://www.alignet.com/) para comenzar.
 
