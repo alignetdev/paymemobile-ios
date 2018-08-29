@@ -1,6 +1,6 @@
 # Payme Mobile
 
-[![CocoaPods](https://img.shields.io/cocoapods/v/Stripe.svg?style=flat)](http://cocoapods.org/?q=author%3Astripe%20name%3Astripe)
+[![CocoaPods](https://img.shields.io/badge/cocoapods-1.0.0-red.svg)](http://cocoapods.org/?q=author%3Astripe%20name%3Astripe)
 [![CocoaPods](https://img.shields.io/cocoapods/l/Stripe.svg?style=flat)](https://github.com/stripe/stripe-ios/blob/master/LICENSE)
 [![CocoaPods](https://img.shields.io/cocoapods/p/Stripe.svg?style=flat)](https://github.com/stripe/stripe-ios#)
 
@@ -20,9 +20,9 @@ Tenemos que colocar las características mas resaltantes de la librería.
 
 ## Lanzamiento
 
-Recomendamos que instales Payme.Mobile iOS usando un gestor de dependencias como cocoapods o carthage. Si lo prefieres puedes agregar manualmente el sdk a tu proyecto, por favor utilizar la ultima version disponible.
+Recomendamos que instales Payme Mobile iOS usando un gestor de dependencias como cocoapods o carthage. Si lo prefieres puedes agregar manualmente el sdk a tu proyecto, por favor utilizar la ultima version disponible en la carpeta Cocoa.
 
-Si prefieres descargar una version anterior puedes elegir una del listado de tags que corresponda a una version anterior instalada en tu proyecto. La instrucción de como usar el sdk en un proyecto iOS lo podrá encontrar en la siguiente ubicación.
+Si prefieres descargar una version anterior puedes elegir una del listado de tags que corresponda a una version anterior. La instrucción de como usar el sdk en un proyecto iOS lo podrá encontrar en la siguiente ubicación.
 
 Por ahora esta en construcción ...
 
