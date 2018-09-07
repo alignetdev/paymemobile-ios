@@ -1,0 +1,11 @@
+framework module PaymeMobile {
+  umbrella header "PaymeMobile.h"
+
+  export *
+  module * { export * }
+}
+
+module PaymeMobile.Swift {
+    header "PaymeMobile-Swift.h"
+    requires objc
+}
