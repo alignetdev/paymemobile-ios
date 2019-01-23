@@ -59,4 +59,4 @@ $ pod install
 
 ### Integración
 
-Para empezar a integrar Payme Mobile iOS. Por favor, consulte nuestra [Guía de integración iOS](https://github.com/alignetdev/paymemobile-ios/blob/master/Documentacion/Gu%C3%ADa%20de%20integración%20-%20iOS.pdf) para comenzar.
+Para empezar a integrar Payme Mobile iOS. Por favor, consulte nuestra [Guía de integración iOS](https://github.com/alignetdev/paymemobile-ios/tree/master/Documentacion) para comenzar.
