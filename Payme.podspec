@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = 'PaymeMobile'
+  s.name         = 'Payme'
   s.version      = '0.0.6'
   s.summary      = 'Pasarela de pago de Alignet'
   s.homepage     = 'https://www.alignet.com/'
