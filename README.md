@@ -47,7 +47,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'PaymeMobile'
+    pod 'Payme'
 end
 ```
 
