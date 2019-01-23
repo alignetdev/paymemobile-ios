@@ -323,13 +323,13 @@ SWIFT_CLASS("_TtC5Payme8DropDown")
 
 
 
+
+
 @class UIEvent;
 
 @interface DropDown (SWIFT_EXTENSION(Payme))
 - (UIView * _Nullable)hitTest:(CGPoint)point withEvent:(UIEvent * _Nullable)event SWIFT_WARN_UNUSED_RESULT;
 @end
-
-
 
 
 
@@ -392,6 +392,21 @@ typedef SWIFT_ENUM(NSInteger, Enviroment, closed) {
 };
 
 
+SWIFT_CLASS("_TtC5Payme20FeaturedReservedData")
+@interface FeaturedReservedData : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nullable name;
+@property (nonatomic, readonly, copy) NSString * _Nullable value;
+@end
+
+
+
+@class PlanQuotaData;
+
+SWIFT_CLASS("_TtC5Payme21ModelFeaturesResponse")
+@interface ModelFeaturesResponse : NSObject
+@property (nonatomic, readonly, strong) PlanQuotaData * _Nullable planQuota;
+@property (nonatomic, readonly, copy) NSArray<FeaturedReservedData *> * _Nullable reserved;
+@end
 
 @class ModelMerchantData;
 @class ModelMerchantSettings;
@@ -465,10 +480,11 @@ SWIFT_CLASS("_TtC5Payme27ModelMerchantFeaturesWallet")
 + (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
 @end
 
+enum ResponseType : NSInteger;
 
 SWIFT_CLASS("_TtC5Payme21ModelMerchantSettings")
 @interface ModelMerchantSettings : NSObject
-- (nonnull instancetype)initWithLocale:(NSString * _Nonnull)locale identifier:(NSString * _Nonnull)identifier brands:(NSArray<NSString *> * _Nonnull)brands signatureKey:(NSString * _Nonnull)signatureKey OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithLocale:(NSString * _Nonnull)locale identifier:(NSString * _Nonnull)identifier brands:(NSArray<NSString *> * _Nonnull)brands signatureKey:(NSString * _Nonnull)signatureKey responseType:(enum ResponseType)responseType OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_DEPRECATED_MSG("-init is unavailable");
 @end
@@ -478,14 +494,35 @@ SWIFT_CLASS("_TtC5Payme10ModelOrder")
 @interface ModelOrder : NSObject
 @end
 
+@class ModelPaymentResponse;
 
 SWIFT_CLASS("_TtC5Payme12ModelPayment")
 @interface ModelPayment : NSObject
+@property (nonatomic, readonly) BOOL success;
+@property (nonatomic, readonly, copy) NSString * _Nonnull messageCode;
+@property (nonatomic, readonly, copy) NSString * _Nonnull message;
+@property (nonatomic, readonly, strong) ModelPaymentResponse * _Nullable payment;
+@property (nonatomic, readonly, strong) ModelFeaturesResponse * _Nullable features;
 @end
 
 
 SWIFT_CLASS("_TtC5Payme20ModelPaymentResponse")
 @interface ModelPaymentResponse : NSObject
+@property (nonatomic, readonly) BOOL accepted;
+@property (nonatomic, readonly, copy) NSString * _Nonnull resultCode;
+@property (nonatomic, readonly, copy) NSString * _Nonnull resultMessage;
+@property (nonatomic, readonly, copy) NSString * _Nullable authorizationResult;
+@property (nonatomic, readonly, copy) NSString * _Nullable referenceCode;
+@property (nonatomic, readonly, copy) NSString * _Nullable brand;
+@property (nonatomic, readonly, copy) NSString * _Nullable bin;
+@property (nonatomic, readonly, copy) NSString * _Nullable lastPan;
+@property (nonatomic, readonly, copy) NSString * _Nullable transactionIdentifier;
+@property (nonatomic, readonly, copy) NSString * _Nullable authorizationCode;
+@property (nonatomic, readonly, copy) NSString * _Nullable hour;
+@property (nonatomic, readonly, copy) NSString * _Nullable date;
+@property (nonatomic, readonly, copy) NSString * _Nullable errorCode;
+@property (nonatomic, readonly, copy) NSString * _Nullable errorMessage;
+@property (nonatomic, readonly, copy) NSString * _Nullable operationNumber;
 @end
 
 
@@ -510,6 +547,19 @@ SWIFT_PROTOCOL("_TtP5Payme19PaymeMobileDelegate_")
 - (ModelMerchant * _Nonnull)setParamsMerchant SWIFT_WARN_UNUSED_RESULT;
 - (void)getResponsePayWithResponse:(ModelPayment * _Nullable)response;
 @property (nonatomic, readonly) enum Enviroment setEnviroment;
+- (void)dismissed;
+@end
+
+
+SWIFT_CLASS("_TtC5Payme13PlanQuotaData")
+@interface PlanQuotaData : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nullable plan;
+@property (nonatomic, readonly, copy) NSString * _Nullable quota;
+@property (nonatomic, readonly, copy) NSString * _Nullable quotaProcessed;
+@property (nonatomic, readonly, copy) NSString * _Nullable amount;
+@property (nonatomic, readonly, copy) NSString * _Nullable dueDate;
+@property (nonatomic, readonly, copy) NSString * _Nullable currency;
+@property (nonatomic, readonly, copy) NSString * _Nullable interest;
 @end
 
 
@@ -584,6 +634,11 @@ SWIFT_CLASS("_TtC5Payme6PopTip")
 
 
 
+
+typedef SWIFT_ENUM(NSInteger, ResponseType, closed) {
+  ResponseTypeDetail = 0,
+  ResponseTypeExtended = 1,
+};
 
 
 SWIFT_CLASS("_TtC5Payme16SecondController")

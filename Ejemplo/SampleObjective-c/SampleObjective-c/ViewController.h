@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Payme/Payme.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<PaymeMobileDelegate>
 
 
 @end

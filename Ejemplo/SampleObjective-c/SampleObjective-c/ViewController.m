@@ -7,9 +7,8 @@
 //
 
 #import "ViewController.h"
-#import <Payme/Payme.h>
 
-@interface ViewController ()<PaymeMobileDelegate>
+@interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *settingIdentifier;
 @property (weak, nonatomic) IBOutlet UITextField *settingLocale;
@@ -90,10 +89,32 @@
 
 @synthesize setEnviroment;
 
+- (void)dismissed {
+    NSLog(@"Hacer algo ...");
+}
+
 - (void)getResponsePayWithResponse:(ModelPayment * _Nullable)response {
     
     if (response != NULL) {
-        NSLog(@"Response: %@",response);
+        
+        NSLog(@"========================================= PAYMENT_RESPONSE =======================================");
+        NSLog(@"messageCode: %@",response.messageCode);
+        NSLog(@"message: %@",response.message);
+        NSLog(@"success: %d",response.success ? YES : NO);
+        if (response.payment != NULL) {
+            NSLog(@"payment.accepted: %d \n",response.payment.accepted ? YES : NO);
+            NSLog(@"payment.resultCode: %@ \n",response.payment.resultCode);
+            NSLog(@"payment.resultMessage: %@",response.payment.resultMessage);
+            NSLog(@"payment.lastPan: %@",response.payment.lastPan);
+            NSLog(@"payment.bin: %@",response.payment.bin);
+            NSLog(@"payment.date: %@",response.payment.date);
+            NSLog(@"payment.hour: %@",response.payment.hour);
+            NSLog(@"payment.errorCode: %@",response.payment.errorCode);
+            NSLog(@"payment.errorMessage: %@",response.payment.errorMessage);
+            NSLog(@"payment.operationNumber: %@",response.payment.operationNumber);
+        }
+        NSLog(@"========================================= PAYMENT_RESPONSE =======================================");
+        
     }else {
         NSLog(@"Response: another error");
     }
@@ -128,7 +149,8 @@
     ModelMerchantSettings *modelMerchantSettings = [[ModelMerchantSettings alloc] initWithLocale:self.settingLocale.text
                                                                                       identifier:self.settingIdentifier.text
                                                                                           brands:[self.settingBrands.text componentsSeparatedByString:@","]
-                                                                                    signatureKey:@"SYbpPEwdKxErVzt@66458456"];
+                                                                                    signatureKey:@"SYbpPEwdKxErVzt@66458456"
+                                                                                    responseType:ResponseTypeExtended];
     
     ModelMerchantFeaturesWallet *modelMerchantFeaturesWallet = [[ModelMerchantFeaturesWallet alloc] initWithUserCommerce:self.featuresWalletUserCode.text];
     
@@ -153,3 +175,4 @@
 }
 
 @end
+

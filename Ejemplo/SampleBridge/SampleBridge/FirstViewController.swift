@@ -10,7 +10,7 @@ import UIKit
 import Payme
 
 class FirstViewController: UIViewController {
-
+    
     @IBOutlet weak var settingIdentifier: UITextField!
     @IBOutlet weak var settingLocale: UITextField!
     @IBOutlet weak var settingBrands: UITextField!
@@ -62,6 +62,7 @@ class FirstViewController: UIViewController {
         items.append((key: "8204",value:"SYbpPEwdKxErVzt@66458456"))
         items.append((key: "8203",value:"SYbpPEwdKxErVzt@66458456"))
         items.append((key: "8202",value:"SYbpPEwdKxErVzt@66458456"))
+        items.append((key: "7970", value: "KErJVvRqEdMexGMfR=6562287655"))
         items.append((key: "11011",value:"moCXdRhwxUgWfHZph56NYEAkuvUqgWtq"))
         items.append((key: "11012",value:"moCXdRhwxUgWfHZph56NYEAkuvUqgWtq"))
         items.append((key: "11013",value:"moCXdRhwxUgWfHZph56NYEAkuvUqgWtq"))
@@ -109,14 +110,14 @@ class FirstViewController: UIViewController {
     func setDefaultFieldsData(){
         let operationNumberStr = randomNumberWith(digits:6)
         settingLocale.text = "es_PE"
-        settingIdentifier.text = "8204"
+        settingIdentifier.text = String(describing: self.getIdentifiers()[0].key)
         settingBrands.text = "VISA,AMEX,DINC,BCRI,TJRI,CMR,MSCD"
         operationNumber.text = "\(operationNumberStr)"
         operationAmount.text = "99.55"
         operationCurrencyCode.text = "PEN"
         operationCurrencySymbol.text = "S/."
         operationProduct.text = "Televisor"
-        featuresWalletUserCode.text = "mtomairo"
+        featuresWalletUserCode.text = "miguel.tomairo@alignet.com"
         featuresPlanQuota.text = "1"
         operationNumber.keyboardType = .numberPad
         operationAmount.keyboardType = .decimalPad
@@ -126,8 +127,7 @@ class FirstViewController: UIViewController {
     }
     
     func addDissmiskeyboard(){
-        let tap = UITapGestureRecognizer(
-            target: self, action: #selector(dismissableViewTapped))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissableViewTapped))
         view.addGestureRecognizer(tap)
     }
     
@@ -177,8 +177,12 @@ class FirstViewController: UIViewController {
 // MARK: - PaymeMobileDelegate methods
 extension FirstViewController: PaymeMobileDelegate {
     
+    func dismissed() {
+        print("Hacer algo ....")
+    }
+    
     var setEnviroment: Enviroment {
-        return .development
+        return .sandbox
     }
     
     func setParamsMerchant() -> ModelMerchant {
@@ -187,7 +191,8 @@ extension FirstViewController: PaymeMobileDelegate {
             locale: self.settingLocale.text!,
             identifier: self.settingIdentifier.text!,
             brands: self.settingBrands.text!.components(separatedBy: ","),
-            signatureKey: self.signatureKey(merchantId: self.settingIdentifier.text!)
+            signatureKey: self.signatureKey(merchantId: self.settingIdentifier.text!),
+            responseType: ResponseType.extended
         )
         
         let modelMerchantFeatures = ModelMerchantFeatures(
@@ -243,7 +248,28 @@ extension FirstViewController: PaymeMobileDelegate {
     
     func getResponsePay(response: ModelPayment?) {
         if let response = response {
-            print("response: ", response)
+            print("========================================= PAYMENT_RESPONSE =======================================")
+            print("messageCode: ", response.messageCode)
+            print("message: ", response.message)
+            print("success: ", response.success)
+            if let paymentData = response.payment {
+                print("payment.accepted: ", paymentData.accepted)
+                print("payment.resultCode: ", paymentData.resultCode)
+                print("payment.resultMessage: ", paymentData.resultMessage)
+                print("payment.lastPan: ", paymentData.lastPan ?? "-")
+                print("payment.bin: ", paymentData.bin ?? "-")
+                print("payment.brand: ", paymentData.brand ?? "-")
+                print("payment.date: ", paymentData.date ?? "-")
+                print("payment.hour: ", paymentData.hour ?? "-")
+                print("payment.errorCode: ", paymentData.errorCode ?? "-")
+                print("payment.errorMessage: ", paymentData.errorMessage ?? "-")
+                print("payment.operationNumber: ", paymentData.operationNumber ?? "-")
+                print("payment.authorizationCode: ", paymentData.authorizationCode ?? "-")
+                print("payment.authorizationResult: ", paymentData.authorizationResult ?? "-")
+                
+            }
+            print("========================================= PAYMENT_RESPONSE =======================================")
+            
         } else {
             print("response: ", "another error")
         }
@@ -304,4 +330,5 @@ extension Int {
         self.init(Int(min + arc4random_uniform(max - min)) - delta)
     }
 }
+
 
